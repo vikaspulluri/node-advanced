@@ -1,14 +1,25 @@
 const crypto = require('crypto');
-
+const Worker = require('webworker-threads').Worker;
 // I'm a child, iam going to act like a server, nothing else
 const express = require('express');
 const app = express();
 
 app.get('/', (req, res) => {
-  crypto.pbkdf2('a', 'b', 100000, 512, 'sha512', () => {
-    res.send('Hello there!!!');
+  const worker = new Worker(function() {
+    this.onmessage = function() {
+      let counter = 0;
+      while (counter < 1e9) {
+        counter++;
+      }
+      postMessage(counter);
+    }
   });
+  worker.onmessage = function(message) {
+    console.log(message.data);
+    res.send(''+message.data);
+  }
 
+  worker.postMessage();
 })
 
 app.get('/fast', (req, res) => {

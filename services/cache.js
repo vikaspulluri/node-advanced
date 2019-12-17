@@ -37,7 +37,7 @@ mongoose.Query.prototype.exec = async function() {
   // result is not a plain js object. it is mongoose document(model instance)
   // you can verify it from result.validate call
 
-  client.set(key, JSON.stringify(result));
+  client.set(key, JSON.stringify(result), 'EX', 10); // 10 seconds
 
   return result; // You have to return what actual mongoose exec will returns
 }

@@ -1,0 +1,35 @@
+Tokbox:
+1. init session
+  session = OT.initSession(apiKey, sessionId)
+2. create publisher
+  publisher = OT.createPublisher('publisher', {})
+3. connect to session
+  session.connect(token, () => {
+    // then publish
+    session.publish(publisher);
+  })
+4. subscribe to stream
+  session.on('streamCreated', (event) => {
+    session.subscribe(event.stream, 'subscriber', {})
+  })
+
+Tencent:
+1. create client
+  client = TRTC.createClient({sdkAppId, userId, mode, userSig})
+2. join the client to room
+  client.join({roomId})
+3. create the stream
+  stream = TRTC.createStream({userId, audio: true, video: true})
+4. publish the stream
+  client.publish(stream)
+5. subscribe to stream
+  client.on('stream-added', (event) => {
+    client.subscribe(event.stream);
+  })
+
+1. We cannot switch between the libraries/technologies during runtime. Possible way is to
+  accommodate both libraries, it's respective code in a single build and call the corresponding
+  functions.
+2. As a result, weightage of js bundle gets heavier(addition of new library - 720KB for Tokbox,
+  270KB for Tencent + Addition of new wrapper and business logic code for each library) which
+  results in more load time of the application and have an impact on slow networks

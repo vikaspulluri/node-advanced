@@ -34,5 +34,6 @@ class StreamFromArray extends Readable {
 const peakStream = new StreamFromArray(peaks);
 
 peakStream.on('data', chunk => console.log(chunk));
+// peakStream.pipe(process.stdout)
 
 peakStream.on('end', () => console.log('done'));

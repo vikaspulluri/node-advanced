@@ -1,0 +1,12 @@
+{
+  "env": {
+    "development": true,
+    "MONGO_USER_ID": "vikaspulluri",
+    "MONGO_USER_PASSWORD": "sV2g1lxUH7AMTIdB",
+    "MONGO_DATABASE": "node_advanced",
+    "MONGO_URI": "mongodb+srv://vikaspulluri:sV2g1lxUH7AMTIdB@blogster-rym7r.mongodb.net/node_advanced?retryWrites=true&w=majority",
+    "GOOGLE_CLIENT_ID": "964808011168-29vqsooppd769hk90kjbjm5gld0glssb.apps.googleusercontent.com",
+    "GOOGLE_CLIENT_SECRET": "KnH-rZC23z4fr2CN4ISK4srN",
+    "COOKIE_KEY": "123123123"
+  }
+}
